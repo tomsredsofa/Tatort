@@ -25,8 +25,6 @@ class VorschauService {
             boxwrapper ->
             println boxwrapper.ul.li.each {
                 vorschauItem ->
-//                def String vorschauDatum = vorschauItem.div[0].span
-//                def String vorschauTitel = vorschauItem.div[1].a.@title
                      def String vorschauInfo = vorschauItem.a
 
                     def parts = vorschauInfo.replace('\u00A0', ' ').split(" \\| ")
@@ -129,86 +127,6 @@ class VorschauService {
                             println "....Vorschau already exists for : ${vorschauTitel} on ${dateSD}"
                         }
                     }
-//                def String vorschauFirstSendingDate = vorschauItem.div[2].a.@href
-//                def vorschauFSD = vorschauFirstSendingDate.replace("sendung.asp?datum=", "")
-
-                // replacing the non-breaking space
-//               def parts = vorschauDatum.replace('\u00A0', ' ').split(" \\| ")
-//                def sendingDate = (parts[0].trim().split(" "))[1] + " " + (parts[1].trim().split(" "))[0]
-//                def channel = parts[2].trim()
-
-//                println "Tatort : '${sendingDate}' '${channel}' '${vorschauTitel}'"
-//                println "'${vorschauDatum}' '${vorschauTitel}'"
-
-//                def dateSD = Date.parse('dd.MM.yy HH:mm', sendingDate + " " + sendingTime)
-//                def dateFSD = Date.parse('dd.MM.yyyy', vorschauFSD)
-//                maybe there is a way to get the first sending date - following the link?
-//                def dateFSD = dateSD
-
-//                def tatort = Tatort.findByFirstSendingDate(dateFSD)
-                /*def tatorte = Tatort.findAllByTitle(vorschauTitel)
-                def tatort
-                if (tatorte.size() > 1) {
-                    println "....Found more than one Tatort for title ${vorschauTitel}"
-                    tatort = tatorte[0]
-                } else if (tatorte.size() == 1) {
-                    tatort = tatorte[0]
-                    println "....Tatort already exists : ${vorschauTitel}"
-                } else if (tatorte.size() == 0) {
-//                if (tatort == null) {
-                    tatort = new Tatort(
-                            firstSendingDate: dateFSD,
-                            wikipediaId: 'xxx',
-                            fallNr: 0,
-                            title: vorschauTitel,
-                            movieStatus: MovieStatus.shouldBeDownloaded,
-                            specialInfo: 'generated automatic Date is wrong',
-                            description: ''
-                    )
-                    if (!tatort.save()) {
-                        tatort.errors.allErrors.each {error ->
-                            println "....An error occured with with saving tatort: ${error}"
-                        }
-                    } else {
-                        tatortNew++
-                        println "....created new Tatort for ${vorschauTitel}"
-                    }
-                }*/
-
-//                def dateSD = Date.parse('dd.MM.yy HH:mm', sendingDate)
-                /*def vorschau = Vorschau.findByTitleAndSendingDate(vorschauTitel, dateSD)
-
-                if (vorschau == null) {
-                    def downloadAction = DownloadAction.unknown
-                    if (tatort.movieStatus == MovieStatus.shouldBeDownloaded || tatort.movieStatus == MovieStatus.hasError) {
-                        downloadAction = DownloadAction.shouldBeDownloaded
-                    } else if (tatort.movieStatus == MovieStatus.watched
-                            || tatort.movieStatus == MovieStatus.unwatched
-                            || tatort.movieStatus == MovieStatus.alreadyCopiedToLaptop
-                            || tatort.movieStatus == MovieStatus.shouldBeCopiedToLaptop) {
-                        downloadAction = DownloadAction.noDownloadRequired
-                    }
-
-                    vorschau = new Vorschau(
-                            downloadAction: downloadAction,
-                            firstSendingDate: tatort.firstSendingDate,
-                            tatort: tatort,
-                            title: vorschauTitel,
-                            sendingDate: dateSD,
-                            channel: channel
-                    )
-
-                    if (!vorschau.save()) {
-                        vorschau.errors.allErrors.each {error ->
-                            println "....An error occured with saving vorschau: ${error}"
-                        }
-                    } else {
-                        println "....Create new Vorschau for : ${vorschauTitel} on ${dateSD}"
-                        vorschauNew++
-                    }
-                } else {
-                    println "....Vorschau already exists for : ${vorschauTitel} on ${dateSD}"
-                }*/
             }
         }
 
